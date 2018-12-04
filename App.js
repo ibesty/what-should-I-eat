@@ -10,6 +10,9 @@ import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View} from 'react-native';
 import { Button, Toast, Modal } from 'antd-mobile-rn';
 
+import { createBottomTabNavigator, createAppContainer } from 'react-navigation';
+import Icon from 'react-native-vector-icons/Ionicons';
+
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
   android:
@@ -18,18 +21,52 @@ const instructions = Platform.select({
 });
 
 type Props = {};
-export default class App extends Component<Props> {
+export class Home extends Component<Props> {
   render() {
       return (
           <View style={styles.container}>
-              <Button onClick={() => Modal.prompt('defaultValue', '谁要爆炸？', [
-                  { text: '取消爆炸' },
-                  { text: '确认爆炸', onPress: value => Toast.success(`${value} 爆炸了！`) },
-              ], 'default', '100')}>一键爆炸</Button>
+              <Text>Home</Text>
+              <Icon name="ios-home" size={24} />
           </View>
       );
   }
 }
+
+export class Settings extends Component<Props> {
+    render() {
+        return (
+            <View style={styles.container}>
+                <Text>Settings</Text>
+                <Icon name="ios-settings" size={24} />
+            </View>
+        );
+    }
+}
+
+const AppNavigator = createBottomTabNavigator({
+    Home: {
+        screen: Home,
+        navigationOptions: {
+            tabBarLabel: 'Home',
+            tabBarIcon: ({ tintColor }) => <Icon name="ios-home" color={tintColor} size={24} />
+        }
+    },
+    Settings: {
+        screen: Settings,
+        navigationOptions: {
+            tabBarLabel: 'Settings',
+            tabBarIcon: ({ tintColor }) => <Icon name="ios-settings" color={tintColor} size={24} />
+        }
+    }
+}, {
+    tabBarOptions: {
+        showIcon: true,
+        activeTintColor: 'tomato',
+        inactiveTintColor: 'gray',
+    }
+})
+
+export default createAppContainer(AppNavigator)
 
 const styles = StyleSheet.create({
   container: {
