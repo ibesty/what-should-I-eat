@@ -25,7 +25,7 @@ export class Home extends Component<Props> {
   render() {
       return (
           <View style={styles.container}>
-              <Text>Home</Text>
+              <Text>首页</Text>
               <Icon name="ios-home" size={24} />
           </View>
       );
@@ -36,7 +36,7 @@ export class Settings extends Component<Props> {
     render() {
         return (
             <View style={styles.container}>
-                <Text>Settings</Text>
+                <Text>设置</Text>
                 <Icon name="ios-settings" size={24} />
             </View>
         );
@@ -47,14 +47,14 @@ const AppNavigator = createBottomTabNavigator({
     Home: {
         screen: Home,
         navigationOptions: {
-            tabBarLabel: 'Home',
+            tabBarLabel: '首页',
             tabBarIcon: ({ tintColor }) => <Icon name="ios-home" color={tintColor} size={24} />
         }
     },
     Settings: {
         screen: Settings,
         navigationOptions: {
-            tabBarLabel: 'Settings',
+            tabBarLabel: '设置',
             tabBarIcon: ({ tintColor }) => <Icon name="ios-settings" color={tintColor} size={24} />
         }
     }
